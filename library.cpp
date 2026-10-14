@@ -115,6 +115,30 @@ vector<User*> Library::getAllUsers() {
     return allUsers;
 }
 
+//auto increment userId
+string Library::autoIncrementUserId() const {
+    int idMax = 0 ;
+    
+    for (auto& user : users){   
+        string getId = user->getUserId();
+        int id = stoi(getId.substr(3)); 
+        if (id >= idMax){
+            idMax = id ;
+        }
+    }
+
+    int nextId = idMax + 1 ;
+    string txt = "USR00";
+    if (nextId >=10){
+        txt = "USR0";
+    }
+    if (nextId >= 100 ){
+        txt = "USR";
+    }
+    return txt + to_string(nextId) ;
+}
+
+
 // Check out book
 bool Library::checkOutBook(const string& isbn, const string& userId) {
     Book* book = findBookByISBN(isbn);
