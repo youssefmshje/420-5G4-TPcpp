@@ -13,6 +13,12 @@ FileManager::FileManager(const string& booksFile, const string& usersFile)
 
 // Save all library data
 bool FileManager::saveLibraryData(Library& library) {
+    if (booksFileName.empty() || usersFileName.empty()) {
+        cout << "Sauvegarde non effectuée, aucun répertoir identifié \n"
+             << "Utilisez --data-dir <répertoire> \n";
+        return false;
+    }
+
     return saveBooksToFile(library) && saveUsersToFile(library);
 }
 
