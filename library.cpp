@@ -51,6 +51,9 @@ vector<Book*> Library::searchBooksByTitle(const string& title) {
             results.push_back(book.get());
         }
     }
+    sort(results.begin(),results.end(), [] (const Book* a, const Book* b){
+        return a->getTitle() < b->getTitle() ;
+    });
     return results;
 }
 
@@ -68,6 +71,9 @@ vector<Book*> Library::searchBooksByAuthor(const string& author) {
             results.push_back(book.get());
         }
     }
+    sort(results.begin(),results.end(), [] (const Book* a, const Book* b){
+        return a->getAuthor() < b->getAuthor() ;
+    });
     return results;
 }
 
